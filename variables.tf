@@ -18,6 +18,11 @@ variable "subnet_id_value" {
     type = string
 }
 
+variable "alb_subnet_id" {
+  type = set(string)
+  description = "subnet id value for alb"
+}
+
 variable "key_pair_name_value" {
     description = "Key pair for ssh into EC2"
     type = string

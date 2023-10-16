@@ -9,6 +9,7 @@ data "aws_vpc" "default" {
 
 # Launching EC2 instance
 resource "aws_instance" "tf-ec2" {
+  count = (var.high_availability == true ? 3 : 1)
   ami           = var.ami_id_value
   instance_type = var.instance_type_value
   subnet_id     = var.subnet_id_value

@@ -22,3 +22,10 @@ variable "key_pair_name_value" {
     description = "Key pair for ssh into EC2"
     type = string
 }
+
+#adding variable for conditional expression
+variable "high_availability" {
+  type = bool
+  description = "If this is a multiple instance deployment, choose `true` to deploy 3 instances"
+  default = false
+}

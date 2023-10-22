@@ -1,18 +1,18 @@
 provider "aws" {
-  region = "ap-south-1"
+  region = var.aws_region
 }
 
 
 module "webserver-cluster" {
   source = "./modules/webserver-cluster"
 
-  ami_id_value        = "ami-0c42696027a8ede58"
-  instance_type_value = "t3.micro"
-  key_pair_name_value = "new-key"
-  greeter_name        = "SauraXD"
-  desired_size        = 3
-  min_size            = 1
-  max_size            = 5
+  ami_id_value        = var.ami_id_value
+  instance_type_value = var.instance_type_value
+  key_pair_name_value = var.key_pair_name_value
+  greeter_name        = var.greeter_name
+  desired_size        = var.desired_size
+  min_size            = var.min_size
+  max_size            = var.max_size
 
 }
 

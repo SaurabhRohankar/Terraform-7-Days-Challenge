@@ -33,7 +33,7 @@ Stay tuned for Day 2, where we'll continue building on this infrastructure.
 5. Follow the prompts to confirm resource creation.
 6. Once the EC2 instance is created, you can access the web page by opening the public IP address in your web browser.
 
-### Day 2 - Load Balancer and Multiple EC2 Instances
+## Day 2 - Load Balancer and Multiple EC2 Instances
 
 ### Overview
 
@@ -60,11 +60,46 @@ On Day 2, we extended our infrastructure by adding an Application Load Balancer 
 6. Follow the prompts to confirm resource creation.
 7. Once the resources are created, you can access the ALB endpoint to see the load-balanced web page.
 
+## Day 3 - Modularization and EC2 Autoscaling
 
+### Overview
+
+On Day 3, we modularized our Terraform configuration by creating a module for a web server cluster. This module allows us to launch a scalable group of EC2 instances behind an ALB.
+
+### Terraform Configuration - Day 3
+
+The module structure in the `modules/webserver-cluster/` directory includes:
+
+- `main.tf`
+- `variables.tf`
+- `outputs.tf`
+- `user_data.sh`
+
+Please refer to the module files for the configuration details.
+
+### Day 3 Progress
+
+1. Created a Terraform module for a web server cluster with a load balancer and EC2 instances.
+2. Utilized the module to configure the infrastructure with variables and output values.
+3. Separated the user data script into a dedicated `user_data.sh` file, making it more maintainable.
+4. Added additional output values to provide information about the module path.
+
+### How to Use - Module
+
+1. In your main configuration, define the module using the `module` block.
+2. Configure the module by providing the necessary variables.
+3. Utilize the outputs from the module for any further configuration or information.
+
+
+### How to Use - Root Configuration
+
+1. Define the AWS provider configuration for the desired region.
+2. Configure the `webserver-cluster` module with the required variables.
+3. Utilize the outputs from the module to access the ALB endpoint and module path information.
 ### Cleanup
 
-To destroy the resources created in Day 1, run `terraform destroy` after you're done experimenting.
+To destroy the resources created, run `terraform destroy` after you're done experimenting.
 
 ---
 
-Stay tuned for Day 3 updates and further progress in the Terraform 7-Day Challenge!
+Stay tuned for Day 4 updates and further progress in the Terraform 7-Day Challenge!

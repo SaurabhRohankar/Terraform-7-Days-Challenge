@@ -9,3 +9,15 @@ output "public_subnet_ids" {
 output "alb-endpoint" {
   value = aws_lb.test.dns_name
 }
+
+output "path_module" {
+  value = "${path.module} this is path module"
+}
+
+output "path_root" {
+  value = path.root
+}
+
+output "path_cwd" {
+  value = path.cwd
+}

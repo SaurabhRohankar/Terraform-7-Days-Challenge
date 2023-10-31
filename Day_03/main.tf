@@ -21,15 +21,3 @@ output "alb-endpoint" {
   value       = module.webserver-cluster.alb-endpoint
   description = "ALB endpoint value"
 }
-
-output "path_module" {
-  value = module.webserver-cluster.path_module
-}
-
-output "path_root" {
-  value = module.webserver-cluster.path_root
-}
-
-output "path_cwd" {
-  value = module.webserver-cluster.path_cwd
-}

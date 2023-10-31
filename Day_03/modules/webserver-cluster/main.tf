@@ -21,14 +21,6 @@ data "aws_subnets" "public_subnets" {
   }
 }
 
-locals {
-  http_port    = 80
-  any_port     = 0
-  any_protocol = "-1"
-  tcp_protocol = "tcp"
-  all_ips      = ["0.0.0.0/0"]
-}
-
 
 resource "aws_lb" "test" {
   name               = "test-lb-tf"
@@ -69,7 +61,7 @@ resource "aws_lb_target_group" "my-alb-tg" {
 #adding lb listener for http
 resource "aws_lb_listener" "My-web-listener" {
   load_balancer_arn = aws_lb.test.arn
-  port              = local.http_port
+  port              = "80"
   protocol          = "HTTP"
 
   default_action {
@@ -157,18 +149,18 @@ resource "aws_security_group" "allow-http-alb-sg" {
 
   ingress {
     description = "HTTP from anywhere"
-    from_port   = local.http_port
-    to_port     = local.http_port
-    protocol    = local.tcp_protocol
-    cidr_blocks = local.all_ips
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   # Outbound rules - allow all outbound traffic by default
   egress {
-    from_port   = local.any_port
-    to_port     = local.any_port
-    protocol    = local.any_protocol
-    cidr_blocks = local.all_ips
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   tags = {
